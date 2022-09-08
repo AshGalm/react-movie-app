@@ -71,9 +71,9 @@ const Login = () => {
                          edge="end"
                         >
                           {values.showPass ? (
-                         <VisibilityOffIcon />
+                         <VisibilityIcon />
                           ): (
-                            <VisibilityIcon />
+                            <VisibilityOffIcon />
                           )
                         }
                         </IconButton>
