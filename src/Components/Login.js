@@ -6,11 +6,14 @@ import {
      Button,
      InputAdornment,
      IconButton } from "@mui/material";
+     import { useForm } from "react-hook-form";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import React, {useState} from "react";
 
 const Login = () => {
+  const {register,handleSubmit} = useForm()
+  const onSubmit=(data) => console.log(data)
   const [values, setValues] = useState({
     email:"",
     password:"",
@@ -35,11 +38,12 @@ const Login = () => {
       {/* This is Login Fileds */}
           <Paper elevation={2} sx={{ padding: 5 }}>
             <Grid Container direction={"column"} spacing={2}>
+              <form onSubmit={handleSubmit(onSubmit)}>
               <Grid item>
                 {/* This is Email Filed of Login */}
                 <TextField
                   type="email"
-                  id=""
+                  {...register("email",{required:"Required"}) }
                   fullWidth
                   label="Enter Your Email"
                   placeholder="user@gmail.com"
@@ -51,7 +55,7 @@ const Login = () => {
               <Grid item>
                 <TextField
                   type={values.showPass ? "text" : "password"}
-                  id=""
+                  {...register("password",{required:"Required"}) }
                   fullWidth
                   label="Enter Your password"
                   placeholder="Password"
@@ -82,9 +86,11 @@ const Login = () => {
               <Grid item>
               <Button variant="contained"
                fullWidth color="success"
+               type="submit"
                >Sign In
                </Button>
               </Grid>
+              </form>
             </Grid>
           </Paper>
         </Grid>
